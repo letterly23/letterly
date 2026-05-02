@@ -1,60 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Love Letter Creator 💌</title>
+    <title>Letterly 💌</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&family=Quicksand&display=swap" rel="stylesheet">
+
+    <!-- html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>Create Your Letter 💌</h1>
+    <h1>Letterly 💌</h1>
 
     <form id="letterForm">
 
-        <div class="form-group">
-            <label for="name">To:</label>
-            <input id="name" type="text" placeholder="Enter their name 💖">
-        </div>
+        <input id="name" type="text" placeholder="Enter name 💖">
 
-        <div class="form-group">
-            <label>Pick a message (optional):</label>
-            <select id="suggestion">
-                <option value="">-- Choose a message --</option>
-                <option value="You make my world brighter every day 💖">Cute 💖</option>
-                <option value="No matter the distance, you're always in my heart ❤️">Long Distance ❤️</option>
-                <option value="I’m so lucky to have you in my life 🌸">Grateful 🌸</option>
-            </select>
-            <label for="message">Or write your own:</label>
-            <textarea id="message" placeholder="Write something sweet... 💌"></textarea>
-        </div>
+        <select id="suggestion">
+            <option value="">Pick a message (optional)</option>
+            <option value="You make my world brighter 💖">Cute 💖</option>
+            <option value="I miss you more than words can say ❤️">Miss you ❤️</option>
+            <option value="I’m lucky to have you 🌸">Grateful 🌸</option>
+        </select>
 
-        <div class="form-group">
-            <label for="theme">Choose Theme:</label>
-            <select id="theme">
-                <option value="flower">Flower 🌸</option>
-                <option value="romantic">Romantic 💖</option>
-                <option value="aesthetic">Aesthetic 🌙</option>
-            </select>
-        </div>
+        <textarea id="message" placeholder="Write your message... 💌"></textarea>
 
-        <div class="form-group">
-            <label for="ending">Ending:</label>
-            <input id="ending" type="text" placeholder="e.g. Always yours 💌">
-        </div>
+        <select id="theme">
+            <option value="flower">Flower 🌸</option>
+            <option value="romantic">Romantic 💖</option>
+            <option value="aesthetic">Aesthetic 🌙</option>
+        </select>
 
-        <button type="submit">Create Card</button>
+        <input id="ending" type="text" placeholder="Ending (e.g. Always yours 💌)">
+
+        <button type="submit">Generate</button>
 
     </form>
 
     <div id="card"></div>
 
-    <button id="downloadBtn">Download Card</button>
-    <button id="copyBtn">Copy Text</button>
+    <div class="actions">
+        <button id="downloadBtn">Download</button>
+        <button id="shareBtn">Copy Link</button>
+    </div>
 
 </div>
 
