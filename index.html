@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Love Letter Creator 💌</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Create Your Letter 💌</h1>
+
+    <form id="letterForm">
+
+        <div class="form-group">
+            <label for="name">To:</label>
+            <input id="name" type="text" placeholder="Enter their name 💖">
+        </div>
+
+        <div class="form-group">
+            <label>Pick a message (optional):</label>
+            <select id="suggestion">
+                <option value="">-- Choose a message --</option>
+                <option value="You make my world brighter every day 💖">Cute 💖</option>
+                <option value="No matter the distance, you're always in my heart ❤️">Long Distance ❤️</option>
+                <option value="I’m so lucky to have you in my life 🌸">Grateful 🌸</option>
+            </select>
+            <label for="message">Or write your own:</label>
+            <textarea id="message" placeholder="Write something sweet... 💌"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="theme">Choose Theme:</label>
+            <select id="theme">
+                <option value="flower">Flower 🌸</option>
+                <option value="romantic">Romantic 💖</option>
+                <option value="aesthetic">Aesthetic 🌙</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ending">Ending:</label>
+            <input id="ending" type="text" placeholder="e.g. Always yours 💌">
+        </div>
+
+        <button type="submit">Create Card</button>
+
+    </form>
+
+    <div id="card"></div>
+
+    <button id="downloadBtn">Download Card</button>
+    <button id="copyBtn">Copy Text</button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
