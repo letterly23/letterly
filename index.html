@@ -4,10 +4,8 @@
     <title>Letterly 💌</title>
     <link rel="stylesheet" href="style.css">
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&family=Quicksand&display=swap" rel="stylesheet">
 
-    <!-- html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
@@ -17,37 +15,44 @@
 
     <h1>Letterly 💌</h1>
 
-    <form id="letterForm">
+    <!-- EDITOR (hidden in shared view) -->
+    <div id="editor">
 
-        <input id="name" type="text" placeholder="Enter name 💖">
+        <form id="letterForm">
 
-        <select id="suggestion">
-            <option value="">Pick a message (optional)</option>
-            <option value="You make my world brighter 💖">Cute 💖</option>
-            <option value="I miss you more than words can say ❤️">Miss you ❤️</option>
-            <option value="I’m lucky to have you 🌸">Grateful 🌸</option>
-        </select>
+            <input id="name" type="text" placeholder="Enter name 💖">
 
-        <textarea id="message" placeholder="Write your message... 💌"></textarea>
+            <select id="suggestion">
+                <option value="">Pick a message (optional)</option>
+                <option value="I miss you more than words can say ❤️">Miss you ❤️</option>
+                <option value="You make my world brighter 💖">Cute 💖</option>
+                <option value="I’m so lucky to have you 🌸">Grateful 🌸</option>
+                <option value="No matter the distance, you’re always in my heart 💌">Long distance 💌</option>
+            </select>
 
-        <select id="theme">
-            <option value="flower">Flower 🌸</option>
-            <option value="romantic">Romantic 💖</option>
-            <option value="aesthetic">Aesthetic 🌙</option>
-        </select>
+            <textarea id="message" placeholder="Write your message..."></textarea>
 
-        <input id="ending" type="text" placeholder="Ending (e.g. Always yours 💌)">
+            <select id="theme">
+                <option value="flower">Flower 🌸</option>
+                <option value="romantic">Romantic 💖</option>
+                <option value="aesthetic">Aesthetic 🌙</option>
+            </select>
 
-        <button type="submit">Generate</button>
+            <input id="ending" type="text" placeholder="Ending (e.g. Always yours 💌)">
 
-    </form>
+            <button type="submit">Generate</button>
 
-    <div id="card"></div>
+        </form>
 
-    <div class="actions">
-        <button id="downloadBtn">Download</button>
-        <button id="shareBtn">Copy Link</button>
+        <div class="actions">
+            <button id="downloadBtn">Download</button>
+            <button id="shareBtn">Copy Link</button>
+        </div>
+
     </div>
+
+    <!-- CARD OUTPUT -->
+    <div id="card"></div>
 
 </div>
 

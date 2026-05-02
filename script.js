@@ -5,7 +5,7 @@ document.getElementById("suggestion").addEventListener("change", function() {
     document.getElementById("message").value = this.value;
 });
 
-// form submit
+// generate card
 document.getElementById("letterForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -26,7 +26,7 @@ document.getElementById("letterForm").addEventListener("submit", function(e) {
         "<p>" + message + "</p>" +
         "<p>— " + ending + "</p>";
 
-    // create link
+    // create share link
     let base = window.location.origin + window.location.pathname;
 
     currentLink = base +
@@ -42,7 +42,10 @@ document.getElementById("letterForm").addEventListener("submit", function(e) {
 // copy link
 document.getElementById("shareBtn").addEventListener("click", function() {
 
-    if (!currentLink) return alert("Create first");
+    if (!currentLink) {
+        alert("Create a card first!");
+        return;
+    }
 
     navigator.clipboard.writeText(currentLink);
     alert("Link copied!");
@@ -53,7 +56,10 @@ document.getElementById("downloadBtn").addEventListener("click", function() {
 
     let card = document.getElementById("card");
 
-    if (!card.innerHTML) return alert("Create first");
+    if (!card.innerHTML) {
+        alert("Create a card first!");
+        return;
+    }
 
     html2canvas(card).then(canvas => {
         let link = document.createElement("a");
@@ -63,7 +69,7 @@ document.getElementById("downloadBtn").addEventListener("click", function() {
     });
 });
 
-// load from link
+// LOAD FROM SHARED LINK
 window.onload = function () {
 
     let params = new URLSearchParams(window.location.search);
@@ -73,13 +79,21 @@ window.onload = function () {
     let theme = params.get("theme");
     let end = params.get("end");
 
-    if (name || msg) {
+    let isShared = name || msg;
 
-        document.getElementById("name").value = name || "";
-        document.getElementById("message").value = msg || "";
-        document.getElementById("theme").value = theme || "romantic";
-        document.getElementById("ending").value = end || "";
+    if (isShared) {
 
-        document.getElementById("letterForm").dispatchEvent(new Event("submit"));
+        // hide editor
+        document.getElementById("editor").style.display = "none";
+        document.body.classList.add("view-mode");
+
+        // show card
+        let card = document.getElementById("card");
+        card.className = theme || "romantic";
+
+        card.innerHTML =
+            "<h2>" + (name || "") + "</h2>" +
+            "<p>" + (msg || "") + "</p>" +
+            "<p>— " + (end || "") + "</p>";
     }
 };

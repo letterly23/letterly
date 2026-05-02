@@ -1,6 +1,7 @@
 body {
     background: #f5f5dc;
     font-family: 'Poppins', sans-serif;
+    margin: 0;
 }
 
 .container {
@@ -10,10 +11,6 @@ body {
     padding: 20px;
     border-radius: 12px;
     text-align: center;
-}
-
-h1 {
-    margin-bottom: 20px;
 }
 
 input, textarea, select {
@@ -34,13 +31,8 @@ button {
     border-radius: 8px;
 }
 
-button:hover {
-    transform: scale(1.05);
-}
-
 .actions button {
     width: 90%;
-    margin-top: 10px;
 }
 
 #card {
@@ -54,18 +46,39 @@ button:hover {
 /* THEMES */
 
 .flower {
-    background: #ffe4ec;
-    font-family: cursive;
+    background: linear-gradient(135deg, #ffe4ec, #fff0f5);
+    color: #b03060;
+
+    font-family: "Brush Script MT", cursive;
+    font-size: 18px;
+
+    border: 2px dashed #ffb6c1;
 }
 
 .romantic {
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    background: linear-gradient(135deg, #ff4d6d, #ff85a2);
     color: white;
+
     font-family: 'Playfair Display', serif;
+    font-size: 18px;
+
+    border: 2px solid #ff1e4d;
 }
 
 .aesthetic {
-    background: linear-gradient(135deg, #b8a9f3, #e6e0ff);
+    background: linear-gradient(135deg, #cbb4f4, #e6dcff);
     color: #4b3f72;
+
     font-family: 'Quicksand', sans-serif;
+    font-size: 17px;
+
+    border: 2px solid #b39ddb;
+}
+
+/* VIEW MODE (shared link) */
+body.view-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
