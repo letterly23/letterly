@@ -4,7 +4,7 @@
     <title>Letterly 💌</title>
     <link rel="stylesheet" href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&family=Great+Vibes&family=Cormorant&family=Dancing+Script&display=swap" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -15,44 +15,63 @@
 
     <h1>Letterly 💌</h1>
 
-    <!-- EDITOR (hidden in shared view) -->
-    <div id="editor">
-
-        <form id="letterForm">
-
-            <input id="name" type="text" placeholder="Enter name 💖">
-
-            <select id="suggestion">
-                <option value="">Pick a message (optional)</option>
-                <option value="I miss you more than words can say ❤️">Miss you ❤️</option>
-                <option value="You make my world brighter 💖">Cute 💖</option>
-                <option value="I’m so lucky to have you 🌸">Grateful 🌸</option>
-                <option value="No matter the distance, you’re always in my heart 💌">Long distance 💌</option>
-            </select>
-
-            <textarea id="message" placeholder="Write your message..."></textarea>
-
-            <select id="theme">
-                <option value="flower">Flower 🌸</option>
-                <option value="romantic">Romantic 💖</option>
-                <option value="aesthetic">Aesthetic 🌙</option>
-            </select>
-
-            <input id="ending" type="text" placeholder="Ending (e.g. Always yours 💌)">
-
-            <button type="submit">Generate</button>
-
-        </form>
-
-        <div class="actions">
-            <button id="downloadBtn">Download</button>
-            <button id="shareBtn">Copy Link</button>
-        </div>
-
+    <!-- HOME -->
+    <div id="home">
+        <button onclick="showCard()">Create a Card 💌</button>
+        <button onclick="showLetter()">Write a Letter 📜</button>
     </div>
 
-    <!-- CARD OUTPUT -->
+    <!-- CARD EDITOR -->
+    <div id="cardEditor" style="display:none;">
+        <form id="letterForm">
+
+            <input id="name" placeholder="Enter name">
+
+            <select id="suggestion">
+                <option value="">Pick a message</option>
+                
+                <option value="I miss you more than words can say ❤️">Miss you ❤️</option>
+                <option value="Even miles apart, you’re always in my heart 💌">Long distance 💌</option>
+                <option value="You make my world brighter 💖">Cute 💖</option>
+                <option value="I’m so lucky to have you 🌸">Grateful 🌸</option>
+            </select>
+
+            <textarea id="message"></textarea>
+
+            <select id="theme">
+                <option value="flower">Floral 🌸</option>
+                <option value="romantic">Romantic ❤️</option>
+                <option value="aesthetic">Aesthetic 💜</option>
+                <option value="dark">Dark 🌙</option>
+            </select>
+
+            <input id="ending" placeholder="Ending">
+
+            <button type="submit">Generate Card</button>
+        </form>
+    </div>
+
+    <!-- LETTER EDITOR -->
+    <div id="letterEditor" style="display:none;">
+        <p style="text-align:left;">Dear</p>
+        <input id="letterName" placeholder="Name...">
+
+        <textarea id="letterText" placeholder="Write your letter..." style="height:200px;"></textarea>
+
+        <input id="letterEnding" placeholder="Ending">
+
+        <button onclick="generateLetter()">Generate Letter</button>
+    </div>
+
+    <!-- OUTPUT -->
     <div id="card"></div>
+
+    <!-- ACTIONS -->
+    <div id="actions" style="display:none;">
+        <button id="shareBtn">Copy Link</button>
+        <button id="downloadBtn">Download</button>
+        
+    </div>
 
 </div>
 

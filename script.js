@@ -1,75 +1,107 @@
 let currentLink = "";
 
-// suggestion autofill
+// NAV
+function showCard() {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("cardEditor").style.display = "block";
+    document.getElementById("letterEditor").style.display = "none";
+}
+
+function showLetter() {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("cardEditor").style.display = "none";
+    document.getElementById("letterEditor").style.display = "block";
+}
+
+// suggestion
 document.getElementById("suggestion").addEventListener("change", function() {
     document.getElementById("message").value = this.value;
 });
 
-// generate card
+// CARD
 document.getElementById("letterForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    let name = document.getElementById("name").value || "Someone special";
-    let message = document.getElementById("message").value || "You mean a lot 💖";
+    let name = document.getElementById("name").value || "Someone";
+    let message = document.getElementById("message").value;
     let theme = document.getElementById("theme").value;
-    let ending = document.getElementById("ending").value || "Always yours 💌";
+    let ending = document.getElementById("ending").value || "Always yours";
+
+    let emoji = "💖";
+    if (theme === "flower") emoji = "🌸";
+    else if (theme === "romantic") emoji = "💌";
+    else if (theme === "aesthetic") emoji = "✨";
 
     let card = document.getElementById("card");
     card.className = theme;
 
-    let emojis = ["💖","💌","✨","🌸","💞"];
-    let emoji = emojis[Math.floor(Math.random()*emojis.length)];
-
     card.innerHTML =
         "<h2>" + name + "</h2>" +
-        "<div>" + emoji + "</div>" +
+        "<div style='font-size:24px'>" + emoji + "</div>" +
         "<p>" + message + "</p>" +
         "<p>— " + ending + "</p>";
 
-    // create share link
+    createLink(name, message, theme, ending, "card");
+
+    document.getElementById("cardEditor").style.display = "none";
+    document.getElementById("actions").style.display = "block";
+});
+
+// LETTER
+function generateLetter() {
+
+    let name = document.getElementById("letterName").value || "Someone";
+    let text = document.getElementById("letterText").value;
+    let ending = document.getElementById("letterEnding").value || "Always yours";
+
+    let today = new Date().toLocaleDateString();
+
+    let card = document.getElementById("card");
+    card.className = "letter";
+
+    card.innerHTML =
+        "<p style='text-align:right; font-size:12px; opacity:0.6;'>" + today + "</p>" +
+        "<p>Dear " + name + ",</p>" +
+        "<p style='margin:30px 0; font-family:Dancing Script; font-size:22px;'>" + text + "</p>" +
+        "<p style='text-align:right; font-family:Great Vibes; font-size:26px;'>— " + ending + "</p>";
+
+    createLink(name, text, "", ending, "letter");
+
+    document.getElementById("letterEditor").style.display = "none";
+    document.getElementById("actions").style.display = "block";
+}
+
+// LINK
+function createLink(name, msg, theme, end, mode) {
     let base = window.location.origin + window.location.pathname;
 
     currentLink = base +
         "?name=" + encodeURIComponent(name) +
-        "&msg=" + encodeURIComponent(message) +
-        "&theme=" + encodeURIComponent(theme) +
-        "&end=" + encodeURIComponent(ending);
+        "&msg=" + encodeURIComponent(msg) +
+        "&theme=" + theme +
+        "&end=" + encodeURIComponent(end) +
+        "&mode=" + mode;
 
-    // update URL
     window.history.replaceState(null, "", currentLink);
-});
+}
 
-// copy link
-document.getElementById("shareBtn").addEventListener("click", function() {
-
-    if (!currentLink) {
-        alert("Create a card first!");
-        return;
-    }
-
+// SHARE
+document.getElementById("shareBtn").onclick = function() {
     navigator.clipboard.writeText(currentLink);
     alert("Link copied!");
-});
+};
 
-// download
-document.getElementById("downloadBtn").addEventListener("click", function() {
-
-    let card = document.getElementById("card");
-
-    if (!card.innerHTML) {
-        alert("Create a card first!");
-        return;
-    }
-
-    html2canvas(card).then(canvas => {
+// DOWNLOAD
+document.getElementById("downloadBtn").onclick = function() {
+    html2canvas(document.getElementById("card")).then(canvas => {
         let link = document.createElement("a");
         link.download = "letter.png";
         link.href = canvas.toDataURL();
         link.click();
     });
-});
+};
 
-// LOAD FROM SHARED LINK
+// LOAD LINK
 window.onload = function () {
 
     let params = new URLSearchParams(window.location.search);
@@ -78,22 +110,33 @@ window.onload = function () {
     let msg = params.get("msg");
     let theme = params.get("theme");
     let end = params.get("end");
+    let mode = params.get("mode");
 
-    let isShared = name || msg;
+    if (!name && !msg) return;
 
-    if (isShared) {
+    document.body.classList.add("view-mode");
 
-        // hide editor
-        document.getElementById("editor").style.display = "none";
-        document.body.classList.add("view-mode");
+    let card = document.getElementById("card");
 
-        // show card
-        let card = document.getElementById("card");
-        card.className = theme || "romantic";
+    if (mode === "letter") {
+
+        let today = new Date().toLocaleDateString();
+
+        card.className = "letter";
 
         card.innerHTML =
-            "<h2>" + (name || "") + "</h2>" +
-            "<p>" + (msg || "") + "</p>" +
-            "<p>— " + (end || "") + "</p>";
+            "<p style='text-align:right; font-size:12px; opacity:0.6;'>" + today + "</p>" +
+            "<p>Dear " + name + ",</p>" +
+            "<p style='margin:30px 0; font-family:Dancing Script; font-size:20px;'>" + msg + "</p>" +
+            "<p style='text-align:right; font-family:Great Vibes; font-size:26px;'>— " + end + "</p>";
+
+    } else {
+
+        card.className = theme;
+
+        card.innerHTML =
+            "<h2>" + name + "</h2>" +
+            "<p>" + msg + "</p>" +
+            "<p>— " + end + "</p>";
     }
 };

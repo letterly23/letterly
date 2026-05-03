@@ -1,15 +1,14 @@
 body {
-    background: #f5f5dc;
+    background: #f3ead7;
     font-family: 'Poppins', sans-serif;
-    margin: 0;
 }
 
 .container {
-    width: 350px;
+    width: 380px;
     margin: 40px auto;
     background: white;
     padding: 20px;
-    border-radius: 12px;
+    border-radius: 10px;
     text-align: center;
 }
 
@@ -22,25 +21,22 @@ input, textarea, select {
 }
 
 button {
-    background: #ff69b4;
-    color: white;
-    border: none;
+    width: 90%;
     padding: 10px;
     margin-top: 10px;
-    cursor: pointer;
+    border: none;
+    background: #a67c52;
+    color: white;
     border-radius: 8px;
+    cursor: pointer;
 }
 
-.actions button {
-    width: 90%;
-}
+/* CARD */
 
 #card {
     margin-top: 20px;
-    padding: 20px;
+    padding: 25px;
     border-radius: 20px;
-    min-height: 120px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 /* THEMES */
@@ -49,36 +45,99 @@ button {
     background: linear-gradient(135deg, #ffe4ec, #fff0f5);
     color: #b03060;
 
-    font-family: "Brush Script MT", cursive;
-    font-size: 18px;
-
-    border: 2px dashed #ffb6c1;
-}
-
-.romantic {
-    background: linear-gradient(135deg, #ff4d6d, #ff85a2);
-    color: white;
-
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-
-    border: 2px solid #ff1e4d;
+    box-shadow:
+        0 0 20px rgba(255,182,193,0.6),
+        0 6px 15px rgba(0,0,0,0.1);
 }
 
 .aesthetic {
     background: linear-gradient(135deg, #cbb4f4, #e6dcff);
     color: #4b3f72;
 
-    font-family: 'Quicksand', sans-serif;
-    font-size: 17px;
+    box-shadow:
+        0 0 25px rgba(180,150,255,0.6),
+        0 8px 20px rgba(0,0,0,0.15);
+}
+.romantic {
+    background: linear-gradient(135deg, #ff4d6d, #c9184a);
+    color: white;
 
-    border: 2px solid #b39ddb;
+    box-shadow:
+        0 0 30px rgba(255,77,109,0.7),
+        0 10px 25px rgba(0,0,0,0.2);
+}
+.dark {
+    background: linear-gradient(135deg, #2c2c54, #474787);
+    color: #f1f1f1;
+
+    box-shadow:
+        0 0 25px rgba(100,100,255,0.4),
+        0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* VINTAGE LETTER */
+
+.letter {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #f6edd9;
+    color: #3b2f1e;
+
+    font-family: 'Cormorant', serif;
+
+    padding: 70px 55px;
+    line-height: 2.3;
+    text-align: left;
+
+    background-image: url("https://www.transparenttextures.com/patterns/aged-paper.png");
+
+    border: 1px solid #e0cfaa;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.15),
+        inset 0 0 60px rgba(0,0,0,0.06);
+
+    transform: rotate(-0.7deg);
+}
+
+/* torn edges */
+.letter::before,
+.letter::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: radial-gradient(circle, transparent 10px, #f6edd9 11px);
+    background-size: 20px 20px;
+}
+
+.letter::before {
+    top: -10px;
+}
+
+.letter::after {
+    bottom: -10px;
+}
+
+/* hide empty */
+#card:empty {
+    display: none;
 }
 
 /* VIEW MODE (shared link) */
 body.view-mode {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background: #e9dfc7;
+    margin: 0;
+}
+
+body.view-mode .container {
+    display: none;
+}
+
+body.view-mode #card {
+    max-width: 700px;
+    margin: 40px auto;
 }
