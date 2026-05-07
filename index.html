@@ -2,10 +2,13 @@
 <html>
 <head>
     <title>Letterly 💌</title>
+
     <link rel="stylesheet" href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&family=Great+Vibes&family=Cormorant&family=Dancing+Script&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Cormorant&family=Great+Vibes&family=Dancing+Script&display=swap" rel="stylesheet">
 
+    <!-- html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 
@@ -23,17 +26,29 @@
 
     <!-- CARD EDITOR -->
     <div id="cardEditor" style="display:none;">
+
         <form id="letterForm">
 
             <input id="name" placeholder="Enter name">
 
             <select id="suggestion">
                 <option value="">Pick a message</option>
-                
-                <option value="I miss you more than words can say ❤️">Miss you ❤️</option>
-                <option value="Even miles apart, you’re always in my heart 💌">Long distance 💌</option>
-                <option value="You make my world brighter 💖">Cute 💖</option>
-                <option value="I’m so lucky to have you 🌸">Grateful 🌸</option>
+
+                <option value="I miss you more than words can say ❤️">
+                    Miss you ❤️
+                </option>
+
+                <option value="Even miles apart, you’re always in my heart 💌">
+                    Long distance 💌
+                </option>
+
+                <option value="You make my world brighter 💖">
+                    Cute 💖
+                </option>
+
+                <option value="I’m so lucky to have you 🌸">
+                    Grateful 🌸
+                </option>
             </select>
 
             <textarea id="message"></textarea>
@@ -47,34 +62,63 @@
 
             <input id="ending" placeholder="Ending">
 
-            <button type="submit">Generate Card</button>
+            <button type="submit">
+                Generate Card
+            </button>
+
         </form>
+
     </div>
 
     <!-- LETTER EDITOR -->
-    <div id="letterEditor" style="display:none;">
-        <p style="text-align:left;">Dear</p>
-        <input id="letterName" placeholder="Name...">
+    <div id="letterEditor" style="display:none;" class="letter">
 
-        <textarea id="letterText" placeholder="Write your letter..." style="height:200px;"></textarea>
+        <div class="letter-content">
 
-        <input id="letterEnding" placeholder="Ending">
+            <p class="date" id="liveDate"></p>
 
-        <button onclick="generateLetter()">Generate Letter</button>
+            <p class="dear">
+                Dear
+                <input id="letterName" placeholder="Name..." />
+            </p>
+
+            <textarea
+                id="letterText"
+                placeholder="Write your letter..."
+            ></textarea>
+
+            <p class="sign">
+                —
+                <input id="letterEnding" placeholder="Your name..." />
+            </p>
+
+        </div>
+
+        <button onclick="generateLetter()">
+            Generate Letter
+        </button>
+
     </div>
 
     <!-- OUTPUT -->
     <div id="card"></div>
 
-    <!-- ACTIONS -->
+    <!-- ACTION BUTTONS -->
     <div id="actions" style="display:none;">
-        <button id="shareBtn">Copy Link</button>
-        <button id="downloadBtn">Download</button>
-        
+
+        <button id="shareBtn">
+            Copy Link
+        </button>
+
+        <button id="downloadBtn">
+            Download
+        </button>
+
     </div>
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>

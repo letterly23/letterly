@@ -1,6 +1,9 @@
 let currentLink = "";
 
-// NAV
+/* =========================
+   HOME NAVIGATION
+========================= */
+
 function showCard() {
     document.getElementById("home").style.display = "none";
     document.getElementById("cardEditor").style.display = "block";
@@ -11,97 +14,164 @@ function showLetter() {
     document.getElementById("home").style.display = "none";
     document.getElementById("cardEditor").style.display = "none";
     document.getElementById("letterEditor").style.display = "block";
+
+    let today = new Date().toLocaleDateString();
+    document.getElementById("liveDate").innerText = today;
 }
 
-// suggestion
-document.getElementById("suggestion").addEventListener("change", function() {
+/* =========================
+   MESSAGE SUGGESTION
+========================= */
+
+document.getElementById("suggestion").addEventListener("change", function () {
     document.getElementById("message").value = this.value;
 });
 
-// CARD
-document.getElementById("letterForm").addEventListener("submit", function(e) {
+/* =========================
+   CARD GENERATION
+========================= */
+
+document.getElementById("letterForm").addEventListener("submit", function (e) {
+
     e.preventDefault();
 
     let name = document.getElementById("name").value || "Someone";
-    let message = document.getElementById("message").value;
+    let message = document.getElementById("message").value || "You are special 💖";
     let theme = document.getElementById("theme").value;
     let ending = document.getElementById("ending").value || "Always yours";
 
     let emoji = "💖";
+
     if (theme === "flower") emoji = "🌸";
     else if (theme === "romantic") emoji = "💌";
     else if (theme === "aesthetic") emoji = "✨";
+    else if (theme === "dark") emoji = "🌙";
 
     let card = document.getElementById("card");
+
     card.className = theme;
 
-    card.innerHTML =
-        "<h2>" + name + "</h2>" +
-        "<div style='font-size:24px'>" + emoji + "</div>" +
-        "<p>" + message + "</p>" +
-        "<p>— " + ending + "</p>";
+    card.innerHTML = `
+        <h2>${name}</h2>
+
+        <div style="font-size:28px; margin:15px 0;">
+            ${emoji}
+        </div>
+
+        <p>${message}</p>
+
+        <p style="margin-top:20px;">
+            — ${ending}
+        </p>
+    `;
 
     createLink(name, message, theme, ending, "card");
 
     document.getElementById("cardEditor").style.display = "none";
-    document.getElementById("actions").style.display = "block";
+    document.getElementById("actions").style.display = "flex";
 });
 
-// LETTER
+/* =========================
+   LETTER GENERATION
+========================= */
+
 function generateLetter() {
 
     let name = document.getElementById("letterName").value || "Someone";
-    let text = document.getElementById("letterText").value;
+
+    let text = document.getElementById("letterText").value || "Your letter...";
+
     let ending = document.getElementById("letterEnding").value || "Always yours";
 
     let today = new Date().toLocaleDateString();
 
     let card = document.getElementById("card");
+
     card.className = "letter";
 
-    card.innerHTML =
-        "<p style='text-align:right; font-size:12px; opacity:0.6;'>" + today + "</p>" +
-        "<p>Dear " + name + ",</p>" +
-        "<p style='margin:30px 0; font-family:Dancing Script; font-size:22px;'>" + text + "</p>" +
-        "<p style='text-align:right; font-family:Great Vibes; font-size:26px;'>— " + ending + "</p>";
+    card.innerHTML = `
+        <div class="letter-content">
+
+            <p class="date">${today}</p>
+
+            <p class="dear">
+                Dear ${name},
+            </p>
+
+            <p class="body">
+                ${text.replace(/\n/g, "<br>")}
+            </p>
+
+            <p class="sign">
+                — ${ending}
+            </p>
+
+        </div>
+    `;
 
     createLink(name, text, "", ending, "letter");
 
     document.getElementById("letterEditor").style.display = "none";
-    document.getElementById("actions").style.display = "block";
+
+    document.getElementById("actions").style.display = "flex";
 }
 
-// LINK
+/* =========================
+   CREATE SHARE LINK
+========================= */
+
 function createLink(name, msg, theme, end, mode) {
+
     let base = window.location.origin + window.location.pathname;
 
-    currentLink = base +
+    currentLink =
+        base +
         "?name=" + encodeURIComponent(name) +
         "&msg=" + encodeURIComponent(msg) +
-        "&theme=" + theme +
+        "&theme=" + encodeURIComponent(theme) +
         "&end=" + encodeURIComponent(end) +
-        "&mode=" + mode;
+        "&mode=" + encodeURIComponent(mode);
 
     window.history.replaceState(null, "", currentLink);
 }
 
-// SHARE
-document.getElementById("shareBtn").onclick = function() {
+/* =========================
+   COPY LINK
+========================= */
+
+document.getElementById("shareBtn").onclick = function () {
+
     navigator.clipboard.writeText(currentLink);
+
     alert("Link copied!");
 };
 
-// DOWNLOAD
-document.getElementById("downloadBtn").onclick = function() {
-    html2canvas(document.getElementById("card")).then(canvas => {
+/* =========================
+   DOWNLOAD
+========================= */
+
+document.getElementById("downloadBtn").onclick = function () {
+
+    let target =
+        document.querySelector(".letter-content") ||
+        document.getElementById("card");
+
+    html2canvas(target).then(canvas => {
+
         let link = document.createElement("a");
+
         link.download = "letter.png";
-        link.href = canvas.toDataURL();
+
+        link.href = canvas.toDataURL("image/png");
+
         link.click();
     });
 };
 
-// LOAD LINK
+/* =========================
+   LOAD SHARED LINK
+========================= */
+
 window.onload = function () {
 
     let params = new URLSearchParams(window.location.search);
@@ -124,19 +194,38 @@ window.onload = function () {
 
         card.className = "letter";
 
-        card.innerHTML =
-            "<p style='text-align:right; font-size:12px; opacity:0.6;'>" + today + "</p>" +
-            "<p>Dear " + name + ",</p>" +
-            "<p style='margin:30px 0; font-family:Dancing Script; font-size:20px;'>" + msg + "</p>" +
-            "<p style='text-align:right; font-family:Great Vibes; font-size:26px;'>— " + end + "</p>";
+        card.innerHTML = `
+            <div class="letter-content">
+
+                <p class="date">${today}</p>
+
+                <p class="dear">
+                    Dear ${name},
+                </p>
+
+                <p class="body">
+                    ${msg.replace(/\n/g, "<br>")}
+                </p>
+
+                <p class="sign">
+                    — ${end}
+                </p>
+
+            </div>
+        `;
 
     } else {
 
         card.className = theme;
 
-        card.innerHTML =
-            "<h2>" + name + "</h2>" +
-            "<p>" + msg + "</p>" +
-            "<p>— " + end + "</p>";
+        card.innerHTML = `
+            <h2>${name}</h2>
+
+            <p>${msg}</p>
+
+            <p style="margin-top:20px;">
+                — ${end}
+            </p>
+        `;
     }
 };
