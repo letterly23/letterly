@@ -1,172 +1,334 @@
-/* ===== BASE ===== */
 body {
     margin: 0;
-    background: #f3ead7;
+    padding: 20px;
+    background: #efe6d3;
     font-family: 'Poppins', sans-serif;
 }
 
-/* CONTAINER */
 .container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
+    width: 95%;
+    max-width: 1100px;
+    margin: auto;
     text-align: center;
 }
 
-/* INPUTS */
-input, textarea, select {
-    width: 90%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: 1px solid #ccc;
+h1 {
+    font-size: 52px;
+    margin-bottom: 30px;
 }
 
 /* BUTTONS */
+
 button {
-    width: 90%;
-    padding: 12px;
-    margin-top: 12px;
+    width: 100%;
+    max-width: 320px;
+
+    padding: 14px;
+
+    margin: 12px auto;
+
     border: none;
-    background: #a67c52;
+
+    border-radius: 14px;
+
+    background: #9c6b42;
+
     color: white;
-    border-radius: 10px;
+
+    font-size: 16px;
+
     cursor: pointer;
+
+    display: block;
 }
 
-/* ACTIONS */
-#actions {
-    margin-top: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+/* INPUTS */
 
-/* CARD */
-#card {
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 20px;
-    max-width: 360px;
-}
+input,
+textarea,
+select {
 
-/* THEMES */
-.flower {
-    background: linear-gradient(135deg, #ffe4ec, #fff0f5);
-    color: #b03060;
-    box-shadow: 0 0 20px rgba(255,182,193,0.6);
-}
+    width: 100%;
 
-.romantic {
-    background: linear-gradient(135deg, #ff4d6d, #c9184a);
-    color: white;
-    box-shadow: 0 0 25px rgba(255,77,109,0.7);
-}
+    padding: 14px;
 
-.aesthetic {
-    background: linear-gradient(135deg, #cbb4f4, #e6dcff);
-    color: #4b3f72;
-    box-shadow: 0 0 25px rgba(180,150,255,0.6);
-}
+    margin: 10px 0;
 
-.dark {
-    background: linear-gradient(135deg, #2c2c54, #474787);
-    color: white;
-    box-shadow: 0 0 25px rgba(100,100,255,0.4);
-}
+    border-radius: 12px;
 
-/* ===== REAL A4 LETTER ===== */
-/* ===== LETTER PAPER ===== */
-
-.letter-content {
-    width: 92%;
-    max-width: 720px;
-
-    background: url("paper.jpg") center/100% 100% no-repeat;
-
-    padding: 100px 75px 120px 75px;
+    border: none;
 
     box-sizing: border-box;
 
-    margin: 40px auto;
-
-    color: #24170d;
-
-    box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+    font-size: 15px;
 }
 
+/* CARD */
 
-/* ===== INPUT + TEXTAREA RESET ===== */
-
-.letter-content input,
-.letter-content textarea {
-    border: none;
-    background: transparent;
-    outline: none;
-
-    font-family: 'Dancing Script', cursive;
-    font-size: 24px;
-
-    color: #2a1a0f;  /* strong readable ink */
+#card {
+    margin-top: 40px;
 }
 
+/* THEMES */
 
-/* ===== DEAR LINE ===== */
+.flower,
+.romantic,
+.aesthetic,
+.dark {
 
-.dear {
-    margin-bottom: 30px;
-    font-size: 20px;
+    max-width: 430px;
+
+    margin: auto;
+
+    padding: 40px;
+
+    border-radius: 28px;
+
+    color: white;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-.dear input {
-    width: 200px;
-    display: inline-block;
+.flower {
+    background: linear-gradient(135deg,#ffb6c1,#ff69b4);
 }
 
+.romantic {
+    background: linear-gradient(135deg,#ff4d6d,#c9184a);
+}
 
-/* ===== BODY TEXT ===== */
+.aesthetic {
+    background: linear-gradient(135deg,#9d4edd,#c77dff);
+}
 
-#letterText {
+.dark {
+    background: linear-gradient(135deg,#2b2d42,#3a0ca3);
+}
+
+/* LETTER EDITOR */
+
+.paper-editor {
+
     width: 100%;
 
-    min-height: 350px;
+    max-width: 850px;
 
-    border: none;
-    background: transparent;
+    min-height: 1200px;
 
-    font-family: 'Dancing Script', cursive;
-    font-size: 24px;
+    margin: auto;
 
-    color: #24170d;
+    padding: 120px;
 
-    line-height: 2.2;
+    box-sizing: border-box;
 
-    resize: none;
+    background: url("paper.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+
+    text-align: left;
 }
 
-/* ===== SIGNATURE ===== */
+/* LETTER INPUTS */
 
-.dear input,
-.sign input {
-    width: 220px;
+.paper-editor input,
+.paper-editor textarea {
 
-    border: none;
     background: transparent;
 
-    font-family: 'Dancing Script', cursive;
-    font-size: 24px;
+    border: none;
 
-    color: #24170d;
+    outline: none;
+
+    color: #2d1b0f;
+
+    font-family: 'Dancing Script', cursive;
+
+    width: 100%;
 }
 
-/* ===== DATE ===== */
+/* DATE */
 
 .date {
+
     text-align: right;
-    margin-bottom: 25px;
-    font-size: 14px;
+
+    font-size: 22px;
+
     opacity: 0.7;
+
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* DEAR */
+
+.dear-text {
+
+    margin-top: 35px;
+
+    margin-bottom: 0px;
+
+    font-size: 34px;
+
+    color: #3d2415;
+
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* NAME */
+
+#letterName {
+
+    font-size: 28px;
+
+    margin-bottom: 18px;
+
+    margin-top: -8px;
+
+    color: #2a1a12;
+}
+
+/* LETTER BODY */
+
+#letterText {
+
+    min-height: 520px;
+
+    margin-top: 10px;
+    
+    resize: none;
+
+    font-size: 24px;
+
+    line-height: 1.8;
+
+    color: #2a1a12;
+}
+
+/* ENDING */
+
+#letterEnding {
+
+    margin-top: 60px;
+
+    text-align: right;
+
+    font-size: 34px;
+}
+
+/* GENERATED LETTER */
+
+.letter {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    min-height: 1200px;
+
+    margin: auto;
+
+    padding: 120px;
+
+    box-sizing: border-box;
+
+    background: url("paper.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+
+    text-align: left;
+
+    color: #2d1b0f;
+}
+
+.letter .date {
+
+    text-align: right;
+
+    font-size: 24px;
+}
+
+.letter .dear {
+
+    margin-top: 70px;
+
+    font-size: 38px;
+
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.letter .body {
+
+    margin-top: 45px;
+
+    font-size: 24px;
+
+    line-height: 1.9;
+
+    font-family: 'Dancing Script', cursive;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: break-word;
+}
+
+.letter .sign {
+
+    margin-top: 80px;
+
+    text-align: right;
+
+    font-size: 38px;
+
+    font-family: 'Dancing Script', cursive;
+}
+
+/* ACTIONS */
+
+#actions {
+    margin-top: 30px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 34px;
+    }
+
+    .paper-editor,
+    .letter {
+
+        padding: 55px 35px;
+
+        min-height: auto;
+    }
+
+    #letterText,
+    .letter .body {
+
+        font-size: 25px;
+
+        line-height: 1.9;
+    }
+
+    .dear-text,
+    .letter .dear {
+
+        font-size: 24px;
+    }
+
+    #letterEnding,
+    .letter .sign {
+
+        font-size: 24px;
+    }
 }
